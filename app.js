@@ -9,9 +9,9 @@ const model = {
     },
     setOnUpdated: function setOnUpdate(callback) {
       this.onUpdatedCallback = callback;
-    }
-  }
-}
+    },
+  },
+};
 
 const view = {
   time: {
@@ -21,27 +21,27 @@ const view = {
       this.model.setOnUpdated(() => { this.draw(); });
     },
     draw: function draw() {
-      let current = this.model.get();
-      let date = current.toLocaleDateString()
-      let time = current.toLocaleTimeString();
+      const current = this.model.get();
+      const date = current.toLocaleDateString();
+      const time = current.toLocaleTimeString();
       this.dom.innerHTML = `<div>${date}</div> <div>${time}</div>`;
-    }
-  }
-}
+    },
+  },
+};
 
 function startTimer(timeModel) {
-  let runner = () => {
+  const runner = () => {
     timeModel.update();
     setTimeout(() => runner(), 1000);
-  }
+  };
   runner();
 }
 
 (function main() {
-  let body = window.document.getElementsByTagName("body").item(0);
-  let div = window.document.createElement("div");
-  div.className = "time";
+  const body = window.document.getElementsByTagName('body').item(0);
+  const div = window.document.createElement('div');
+  div.className = 'time';
   body.appendChild(div);
   view.time.init(div, model.time);
   startTimer(model.time);
-})()
+})();
